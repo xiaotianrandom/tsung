@@ -463,8 +463,8 @@ extract_headers(<<>>) ->
 
 %% Comes from mochiweb_utils.erl ; very slightly adapted.
 parse_header(String, ";")-> % for Content-Type and friends
-    [Type | Parts] = [string:strip(S) || S <- string:tokens(String, ";")],
-    {string:to_lower(Type),
+    Parts = [string:strip(S) || S <- string:tokens(String, ";")],
+    {string:to_lower("type"),
      lists:foldr(fun prepare_headers/2, [], Parts)};
 parse_header(String, ",")-> % for Auth
     [Type | Rest] = [string:strip(S) || S <- string:tokens(String, " ")],
